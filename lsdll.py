@@ -143,6 +143,7 @@ def main():
     parser = argparse.ArgumentParser(description="List and extract resources from a DLL.")
     parser.add_argument("dll_path", type=str, help="Path to the DLL file.")
     parser.add_argument("--list", "-l", action="store_true", help="List resources in the DLL.")
+    parser.add_argument("--extract", "-x", action="store_true", help="Extract resources in the DLL.")
     parser.add_argument("--type", "-t", type=str, help="Resource type (name or integer).")
     parser.add_argument("--name", "-n", type=str, help="Resource name or ID.")
     parser.add_argument("--output", "-o", type=str, help="Output file or folder path.")
@@ -150,7 +151,7 @@ def main():
 
     if args.list:
         list_resources_in_dll_legacy(args.dll_path)
-    elif args.type and args.output:
+    elif args.extract and args.type and args.output:
         resource_type = get_resource_type(args.type)
         if args.name:
             extract_resource(args.dll_path, resource_type, args.name, args.output)
